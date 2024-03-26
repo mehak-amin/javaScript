@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM learning part 4 </title>
+
+    <style>
+
+    </style>
+</head>
+<body  style="background-color: #212121;  color: aliceblue">
+    <ul class="language">
+        <li>JavaScript</li>
+    </ul>
+
+    <script>
+        // adding a list item to ul using this method 
+        const addAttribute = document.querySelector('.language');
+        const newElement = document.createElement('li');
+        newElement.innerText = "js with chai";
+        addAttribute.appendChild(newElement);
+
+        // adding a list item using a function 
+
+        // function addLanguage(langName){
+        //     const li = document.createElement('li');
+        //     li.innerHTML =`${langName}`
+        //     document.querySelector('.language').appendChild(li)
+        // }
+        //  addLanguage("python")
+        function addLang(newLang){
+         const addAttribute = document.querySelector('.language');
+        const newElement = document.createElement('li');
+        newElement.innerText = `${newLang}`
+        addAttribute.appendChild(newElement);
+
+        }
+        addLang("React")
+        addLang("Python")
+
+        // the above code we created using functions is not a good way for large tree structures .. in this case it has to traverse the whole tree and then reach at the end point of the tree.. here its small thus its not big deal..but in the big tree structures its not a good approach 
+        //  thus we will optimize the same code a little bit 
+        
+        function addOptimizeLang(langName){
+            const li = document.createElement('li');
+            li.appendChild(document.createTextNode(langName))
+            document.querySelector('.language').appendChild(li)
+        }
+
+        addOptimizeLang('OOPS')
+        //   editing values 
+        //  first we will select the  item which we have to edit
+
+         const secondLang = document.querySelector('li:nth-child(2)');
+        // secondLang.innerHTML = "SQL"  // one way of Editing text 
+
+        const newLi = document.createElement('li') 
+        newLi.textContent = "RDBMS"  
+        secondLang.replaceWith(newLi) // another optimized way of editing 
+        //   another way of editing 
+
+        const firstLang = document.querySelector("li:first-child")
+        // console.log(firstLang)
+        firstLang.outerHTML = '<li> typeScript </li>'
+
+        //  remove 
+        const lastLang = document.querySelector('li:last-child')
+        lastLang.remove()
+
+    </script>
+</body>
+</html>
